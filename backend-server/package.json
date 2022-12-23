@@ -1,0 +1,25 @@
+{
+  "name": "osrs-speedrun-backend-server",
+  "version": "1.0.0",
+  "description": "The backend server for an osrs speedruning application that logs and displays room splits.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSchelbNE/osrs-speedrun-backend-server.git"
+  },
+  "keywords": [
+    "osrs",
+    "speedrunning",
+    "raids"
+  ],
+  "author": "Cschelb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSchelbNE/osrs-speedrun-app/issues"
+  },
+  "homepage": "https://github.com/CSchelbNE/osrs-speedrun-app#readme"
+}
