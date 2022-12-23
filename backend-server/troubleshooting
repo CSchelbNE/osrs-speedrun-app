@@ -1,0 +1,2 @@
+env variable for jwt:
+in intellij run -> edit configurations... -> list on the notepad nested in environment -> Add new variable
