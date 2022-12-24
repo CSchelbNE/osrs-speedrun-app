@@ -1,19 +1,17 @@
 import axios from "axios";
 const BACKEND_API_STRING = "http://localhost:2000/api/users/"
 
+const instance = axios.create(
+    {withCredentials: true}
+)
+
 
 export const createUser = async (user) => {
-    const result = await axios.post(BACKEND_API_STRING+"create", user);
-    document.cookie = `token=${result.data}`
+    const result = await instance.post(BACKEND_API_STRING+"create", user).catch((err) => {})
     return result;
 }
 
-export const login = async ({username, password, token}) => {
-    const config = {
-        headers: {
-            Authorization : "Bearer " + token
-        }
-    }
-    const result = await axios.post(BACKEND_API_STRING+"login", {username: username, password:password}, config)
+export const login = async ({username, password}) => {
+    const result = await instance.post(BACKEND_API_STRING+"login", {username: username, password:password})
     return result.data;
 }

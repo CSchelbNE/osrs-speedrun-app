@@ -1,14 +1,11 @@
 import {useRef} from "react";
 import {createUser} from "../services/user-services";
-import useAuthContext from "./auth-context-hook";
 
 const SignupScreen = () => {
-    const {setAuth} = useAuthContext();
     const username = useRef();
     const password = useRef();
     const handelSignup = () => {
-        createUser({username: username.current.value, password: password.current.value}).then((res) => {
-            setAuth(res.data);
+        createUser({username: username.current.value, password: password.current.value, email: "Chris.schelb@hotmail.com"}).then((res) => {
         });
     }
     return (
