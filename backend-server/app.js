@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser";
 const app = express()
 dotenv.config();
 
-const DB_CON_STR = "mongodb://localhost:27017";
+const DB_CON_STR = "mongodb://localhost:27017/osrs-speedrun-db";
 mongoose.set("strictQuery", false);
 mongoose.connect(DB_CON_STR).then(() => {
     console.log("DB Connection Successful Using " + DB_CON_STR);
