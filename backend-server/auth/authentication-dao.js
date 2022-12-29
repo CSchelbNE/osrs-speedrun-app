@@ -14,11 +14,29 @@ const createHashedPassword = (password) => {
     return {hashedPassword, salt};
 }
 
-const verifyUserPassword = (password) => {
-    const hashedPassword = crypto.pbkdf2Sync(password, this.salt, 1024, 64,
+const verifyPassword = (password,storedHash, salt) => {
+    const hashedPassword = crypto.pbkdf2Sync(password, salt, 1024, 64,
         "sha512").toString("hex");
-    return this.password === hashedPassword;
+    return hashedPassword === storedHash;
 }
+
+export const loginWithCredentials = async (credentials) => {
+    const {username, password} = credentials;
+    const result = await UserModel.findOne({username: username});
+    if (!result){
+        throw new UserException("Invalid Credentials");
+    }
+    if(verifyPassword(password, result.password, result.salt)){
+        return result;
+    } else {
+        throw new UserException("Invalid Credentials");
+    }
+}
+
+export const loginWithJWT = async (username) => {
+    return UserModel.findOne({username: username});
+}
+
 export const createNewUser = async (credentials) => {
     const {username, password, email} = credentials;
     const result = await UserModel.findOne({email: email});

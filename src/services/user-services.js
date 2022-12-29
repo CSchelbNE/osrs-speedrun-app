@@ -6,12 +6,28 @@ const instance = axios.create(
 )
 
 
+
 export const createUser = async (user) => {
-    const result = await instance.post(BACKEND_API_STRING+"create", user).catch((err) => {})
-    return result;
+    const result = await instance.post(BACKEND_API_STRING+"create", user).catch(({response}) => {
+        console.log(response.statusText);
+        return response.status;
+    })
+    return result.data;
 }
 
-export const login = async ({username, password}) => {
-    const result = await instance.post(BACKEND_API_STRING+"login", {username: username, password:password})
+export const login = async (credentials) => {
+    const result = await instance.post(BACKEND_API_STRING+"login", credentials).catch(
+        ({response}) => {
+            console.log(response);
+            return response.status;
+        }
+    )
     return result.data;
+}
+
+export const jwtLogin = async () => {
+    const result = await instance.post(BACKEND_API_STRING+"jwt-auth").catch((err) => {
+        console.log("JWT AUTH ERROR");
+    })
+    return result.data
 }

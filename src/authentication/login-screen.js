@@ -1,12 +1,15 @@
-import {useRef} from "react";
-import {login} from "../services/user-services";
+import {useEffect, useRef} from "react";
+import {useDispatch} from "react-redux";
+import {loginThunk} from "../services/user-thunk";
 
 const LoginScreen = () => {
+    const dispatch = useDispatch();
     const username = useRef();
     const password = useRef();
     const handelSignup = () => {
-        login({username: username.current.value, password: password.current.value}).then(()=>{})
+        dispatch(loginThunk({username: username.current.value, password: password.current.value}))
     }
+
     return (
         <div>
             login

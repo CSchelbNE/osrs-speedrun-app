@@ -3,6 +3,7 @@ export const verifyToken = (req,res,next) => {
     // const header = req.headers.authorization;
     // const token = header && header.split(' ')[1]
     const {token} = req.cookies;
+    console.log(token);
     // const token = req.cookie.token;
     // http 401= unauthorized
     if (!token) return res.sendStatus(401)
@@ -12,7 +13,7 @@ export const verifyToken = (req,res,next) => {
             return;
         }
         console.log(user);
-        req.user = user;
+        req.username = user.username;
         next();
     })
 }
